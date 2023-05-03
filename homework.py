@@ -92,20 +92,24 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
+def read_and_print_name(func_name, value1=None, value2=None):
+    row = func_name.__name__.replace('_', ' ').title() + f' [{value1}]'
+    if value2 is not None:
+        row = row[:-1] + f', {value2}]'
+    print('\n', row)
+    return row
+
+
 def open_browser(browser_name):
-    actual_result = open_browser.__name__.replace('_', ' ').title() + f' [{browser_name}]'
-    print(actual_result)
-    assert actual_result == "Open Browser [Chrome]"
+    actual_result = read_and_print_name(open_browser, browser_name)
+    assert actual_result == f"Open Browser [{browser_name}]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = go_to_companyname_homepage.__name__.replace('_', ' ').title() + f' [{page_url}]'
-    print(actual_result)
-    assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
+    actual_result = read_and_print_name(go_to_companyname_homepage, page_url)
+    assert actual_result == f"Go To Companyname Homepage [{page_url}]"
 
-go_to_companyname_homepage('https://companyname.com')
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = find_registration_button_on_login_page.__name__.replace('_', ' ').title() + f' [{page_url}, {button_text}]'
-    print(actual_result)
-    assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
+    actual_result = read_and_print_name(find_registration_button_on_login_page, page_url, button_text)
+    assert actual_result == f"Find Registration Button On Login Page [{page_url}, {button_text}]"
