@@ -92,12 +92,11 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
-def read_and_print_name(func_name, value1=None, value2=None):
-    row = func_name.__name__.replace('_', ' ').title() + f' [{value1}]'
-    if value2 is not None:
-        row = row[:-1] + f', {value2}]'
-    print('\n', row)
-    return row
+def read_and_print_name(func, *args):
+    func_name = func.__name__.replace('_', ' ').title()
+    arg_name = ', '.join(args)
+    print(f'\n {func_name} [{arg_name}]')
+    return (f'{func_name} [{arg_name}]')
 
 
 def open_browser(browser_name):
